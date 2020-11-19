@@ -2,15 +2,19 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+let tempId = 0;
 
-let notes = JSON.parse(fs.readFileSync(path.join(__dirname, "../db/db.json"), (err) => {if(err) throw err})); 
-let tempId = notes[notes.length - 1].id;
+let notes = JSON.parse(fs.readFileSync(path.join(__dirname, "Develop/db/db.json"), (err) => {if(err) throw err})); 
+if (notes[notes.length - 1]) {
+    tempId = notes[notes.length - 1].id;
+}
+
 
 // Express app
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'Develop/public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -19,11 +23,11 @@ app.use(express.json());
 // Routes
 
 app.get("/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "notes.html"));
+    res.sendFile(path.join(__dirname, "Develop/public/notes.html"));
 })
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "Develop/public/index.html"));
 })
 
 app.get("/api/notes", (req, res) => {
@@ -59,7 +63,7 @@ app.listen(PORT, function () {
 
 
 const updateNotes = (res) => {
-    fs.writeFileSync(path.join(__dirname, "../db/db.json"), JSON.stringify(notes), (err) => {if(err) throw err});
-    res.sendFile(path.join(__dirname, "notes.html"));
+    fs.writeFileSync(path.join(__dirname, "Develop/db/db.json"), JSON.stringify(notes), (err) => {if(err) throw err});
+    res.sendFile(path.join(__dirname, "Develop/public/notes.html"));
 }
 
