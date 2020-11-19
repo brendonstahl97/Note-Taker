@@ -18,7 +18,7 @@ This is a note-taking application which connects to a JSON file which acts as a 
 ---
    
 ### Installation <a name="Installation"></a>
-To run this program, either visit the deployed site here, or download the files and run server.js with Node. Then navigate to your server at the default port of 3001.
+To run this program, either visit the deployed site ![here](https://pacific-cove-38497.herokuapp.com), or download the files and run server.js with Node. Then navigate to your server at the default port of 3001.
    
 ---
    
